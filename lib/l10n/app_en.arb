@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appTitle": "Otex App",
+  "home": "Home",
+  "chat": "Chat",
+  "addProduct": "Add Product",
+  "myAds": "My Ads",
+  "myAccount": "My Account",
+  "allOffers": "all offers",
+  "clothes": "clothes",
+  "accessories": "Accessories",
+  "electronics": "electronics",
+
+"beauity": "beauity",
+"phones": "phones",
+"clocks": "clocks",
+"men": "men"
+
+}

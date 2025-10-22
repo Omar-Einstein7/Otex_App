@@ -1,0 +1,18 @@
+{
+  "@@locale": "ar",
+  "appTitle": "تطبيق أوتكس",
+  "home": "الرئيسية",
+  "chat": "المحادثة",
+  "addProduct": "اضف اعلان",
+  "myAds": "اعلاناتي",
+  "myAccount": "حسابي",
+  "allOffers": "كل العروض",
+  "clothes": "ملابس",
+  "accessories": "اكسسوارات",
+  "electronics": "الكترونيات",
+
+    "beauity": "منتجات تجميل",
+      "phones": "موبايلات",
+        "clocks": "ساعات",
+          "men": "موضه رجال"
+}
