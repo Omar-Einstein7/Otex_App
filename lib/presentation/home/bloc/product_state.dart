@@ -1,6 +1,7 @@
 
 
-import 'package:optex_app/domain/movie/entities/product.dart';
+
+import 'package:optex_app/domain/home/entities/product.dart';
 
 abstract class ProductState {}
 

@@ -1,8 +1,7 @@
-import 'package:optex_app/core/config/database/app_database.dart';
 import 'package:dartz/dartz.dart';
-import 'package:optex_app/domain/movie/entities/product.dart';
 import 'package:optex_app/common/helper/mapper/product_mapper.dart';
-
+import 'package:optex_app/core/config/database/app_database.dart';
+import 'package:optex_app/domain/home/entities/product.dart';
 
 abstract class ProductDao {
   Future<Either<Exception, List<Product>>> getAllProducts();

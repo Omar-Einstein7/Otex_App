@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:optex_app/di.dart';
-import 'package:optex_app/domain/movie/entities/product.dart';
-import 'package:optex_app/domain/movie/repo/product.dart';
+
+import 'package:optex_app/domain/home/repo/product.dart';
 import '../../../core/usecases/usecase.dart';
 
+import 'package:optex_app/di.dart';
 
 class GetAllProducts extends Usecase<Either, dynamic> {
   @override

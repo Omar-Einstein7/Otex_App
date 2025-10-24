@@ -1,5 +1,5 @@
+
 import 'package:optex_app/core/config/database/app_database.dart';
-import 'package:dartz/dartz.dart';
 
 class Category {
   final int id;

@@ -1,7 +1,7 @@
 import 'package:optex_app/di.dart';
-import 'package:optex_app/domain/movie/usecases/get_all_products.dart';
-import 'package:optex_app/domain/movie/usecases/add_product.dart';
-import 'package:optex_app/domain/movie/entities/product.dart';
+import 'package:optex_app/domain/home/usecases/get_all_products.dart';
+import 'package:optex_app/domain/home/usecases/add_product.dart';
+import 'package:optex_app/domain/home/entities/product.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'product_state.dart';

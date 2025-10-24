@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:optex_app/common/bloc/generic_data_state.dart';
 import 'package:optex_app/core/usecases/usecase.dart';
 

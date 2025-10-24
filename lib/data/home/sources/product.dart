@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:optex_app/common/helper/mapper/product_mapper.dart';
 import 'package:optex_app/core/config/database/app_database.dart';
-import 'package:optex_app/data/movie/models/product.dart';
+import 'package:optex_app/data/home/models/product.dart';
 
 
 

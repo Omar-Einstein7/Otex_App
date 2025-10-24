@@ -13,4 +13,8 @@ class AppNavigator {
   static void pushAndRemove(BuildContext context, String routeName) {
     Navigator.pushNamedAndRemoveUntil(context, routeName, (route) => false);
   }
+
+  static void pop(BuildContext context) {
+    Navigator.pop(context);
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:optex_app/domain/movie/entities/product.dart';
+
+import 'package:optex_app/domain/home/entities/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -8,6 +9,9 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Responsive sizing based on screen width
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 2,
@@ -15,21 +19,18 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            height: 190, // increased fixed height for a bigger image area
-            child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(12),
-              ),
-              child: product.imageUrl != null
-                  ? Image.asset(
-                      product.imageUrl!,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.image_not_supported, size: 64),
-                    )
-                  : const Icon(Icons.image, size: 64),
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(12),
             ),
+            child: product.imageUrl != null
+                ? Image.asset(
+                    product.imageUrl!,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Icon(Icons.image_not_supported, size: 64),
+                  )
+                : const Icon(Icons.image, size: 64),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
@@ -37,8 +38,7 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  textDirection: TextDirection
-                      .ltr, // Force LTR so icon stays first regardless of locale
+                  textDirection: TextDirection.ltr,
                   children: [
                     SvgPicture.asset(
                       'lib/assets/icons/bxs_offer.svg',
@@ -68,7 +68,6 @@ class ProductCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     Text(
                       '${product.price} EGP',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -79,8 +78,7 @@ class ProductCard extends StatelessWidget {
                     Icon(Icons.favorite_border, size: 20),
                   ],
                 ),
-                 const SizedBox(height: 10),
-
+                const SizedBox(height: 10),
                 Row(
                   textDirection: TextDirection.rtl,
                   children: [
@@ -97,8 +95,6 @@ class ProductCard extends StatelessWidget {
                         color: Colors.deepOrangeAccent,
                       ),
                     ),
-                    
-                    
                   ],
                 ),
                 const SizedBox(height: 15),
@@ -117,7 +113,7 @@ class ProductCard extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
-                            Icons.business, // company badge icon
+                            Icons.business,
                             size: 16,
                             color: Colors.blue,
                           ),

@@ -1,6 +1,6 @@
 
-import 'package:optex_app/data/movie/models/product.dart';
-import 'package:optex_app/domain/movie/entities/product.dart';
+import 'package:optex_app/data/home/models/product.dart';
+import 'package:optex_app/domain/home/entities/product.dart';
 
 class ProductMapper {
   static Product toEntity(ProductModel productModel) {

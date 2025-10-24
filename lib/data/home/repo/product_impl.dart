@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:optex_app/common/helper/mapper/product_mapper.dart';
-
-import 'package:optex_app/data/movie/sources/product.dart';
-import 'package:optex_app/domain/movie/entities/product.dart';
-import 'package:optex_app/domain/movie/repo/product.dart';
+import 'package:optex_app/data/home/sources/product.dart';
 import 'package:optex_app/di.dart';
+import 'package:optex_app/domain/home/entities/product.dart';
+import 'package:optex_app/domain/home/repo/product.dart';
+
 
 
 class ProductRepositoryImpl implements ProductRepository {
