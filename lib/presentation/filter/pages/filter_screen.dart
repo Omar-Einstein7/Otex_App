@@ -61,87 +61,159 @@ class _FilterScreenState extends State<FilterScreen> {
               ),
               body: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Category Section
-                      Text('الفئة', style: TextStyle(fontWeight: FontWeight.bold)),
-                      Icon(Icons.real_estate_agent_rounded ,color: Colors.orange, ),
-                      DropdownButtonFormField<String>(
-                        decoration: const InputDecoration(
-                          hintText: 'اختر الفئة',
-                          border: OutlineInputBorder(),
+                      ListTile(
+                        leading: Icon(Icons.real_estate_agent_rounded, color: Color.fromRGBO(249, 91, 28, 1)),
+                        title: Text(filterState.selectedCategory ?? 'الفئة', style: TextStyle(fontWeight: FontWeight.bold)),
+                        subtitle: Text('اختر الفئة التي تريد البحث عنها'),
+                        trailing: TextButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context, // Pass the context that has access to FilterCubit
+                              builder: (BuildContext dialogContext) { // Use a new context for the dialog
+                                return BlocProvider.value(
+                                  value: context.read<FilterCubit>(), // Provide the existing cubit to the dialog's subtree
+                                  child: AlertDialog(
+                                    title: Text('اختر الفئة'),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: <Widget>[
+                                          ...['شقة', 'فيلا', 'مكتب', 'محل', 'أرض'].map((String category) {
+                                            return Builder(
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    context.read<FilterCubit>().updateCategory(category);
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text(category),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          }),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Text('تغيير'),
                         ),
-                        value: filterState.selectedCategory, // Use selectedCategory here
-                        onChanged: (value) {
-                          context.read<FilterCubit>().updateCategory(value);
-                        },
-                        items: ['عقارات', 'سيارات', 'إلكترونيات']
-                            .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                            .toList(),
                       ),
-
                       const SizedBox(height: 20),
-
-               
+                  
+                                 
                       Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
+                  border: Border.all(color: Colors.grey),
+                          
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: ListTile(
+                          leading: Icon(Icons.location_on),
                           title: const Text('اختر الموقع'),
+                          subtitle: Text(filterState.selectedLocation ?? 'اختر الموقع'),
                           trailing: const Icon(Icons.arrow_forward_ios),
                           onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext dialogContext) {
+                                return BlocProvider.value(
+                                  value: context.read<FilterCubit>(),
+                                  child: AlertDialog(
+                                    title: Text('اختر الموقع'),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: <Widget>[
+                                          ...['مكة المكرمة', 'المنطقة الشرقية', 'المنطقة الشرقية', 'المنطقة الشرقية', 'المنطقة الشرقية'].map((String location) {
+                                            return Builder(
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    context.read<FilterCubit>().updateLocation(location);
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text(location),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          }),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          
+                            
                             // Location selection logic
                           },
                         ),
                       ),
                      
-
+                  
                       const SizedBox(height: 20),
-
+                  
                       // Main Sections Section
-                      Text(
-                        'الاقساط الشهريه',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Text(
+                          'الاقساط الشهريه',
+                           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                        ),
                       ),
                         const SizedBox(height: 20),
                       
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                
-
+                                  
+                  
                       const SizedBox(height: 20),
-
+                  
                       // Type Section - Replaced SingleChildScrollView with Wrap
                       Text(
                         'النوع',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                     const SizedBox(height: 20),
                       Wrap(
@@ -178,13 +250,13 @@ class _FilterScreenState extends State<FilterScreen> {
                           ),
                         ],
                       ),
-
+                  
                       const SizedBox(height: 20),
-
+                  
                       // Number of Rooms Section - Replaced Row with Wrap
                       Text(
                         'عدد الغرف',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                         style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                         const SizedBox(height: 20),
                      
@@ -229,16 +301,16 @@ class _FilterScreenState extends State<FilterScreen> {
                           ),
                         ],
                       ),
-
+                  
                       const SizedBox(height: 20),
-
+                  
                       // Price Section - Replaced with TextFields
                       Text(
                         'السعر',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                        const SizedBox(height: 20),
-
+                  
                       Row(
                         children: [
                           Expanded(
@@ -247,11 +319,11 @@ class _FilterScreenState extends State<FilterScreen> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'الحد الأدنى',
-                                hintText: '0',
+                                
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                suffixText: 'جنييه',
+                              
                               ),
                               onChanged: (value) {
                                 context.read<FilterCubit>().updateMinPrice(int.tryParse(value) ?? 0);
@@ -265,11 +337,11 @@ class _FilterScreenState extends State<FilterScreen> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'الحد الأقصى',
-                                hintText: '10000',
+                                
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                suffixText: 'جنييه',
+                                
                               ),
                               onChanged: (value) {
                                 context.read<FilterCubit>().updateMaxPrice(int.tryParse(value) ?? 10000);
@@ -278,9 +350,9 @@ class _FilterScreenState extends State<FilterScreen> {
                           ),
                         ],
                       ),
-
+                  
                       const SizedBox(height: 20),
-
+                  
                       // Payment Method Section - Replaced Row with Wrap
                       Text(
                         'طريقة الدفع',
@@ -315,16 +387,16 @@ class _FilterScreenState extends State<FilterScreen> {
                           ),
                         ],
                       ),
-
+                  
                       const SizedBox(height: 20),
-
+                  
                       // Item Condition Section - Replaced Row with Wrap
                       Text(
                         'حالة العقار',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                         const SizedBox(height: 20),
-             
+                               
                       Wrap(
                         spacing: 12,
                         runSpacing: 8,

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:optex_app/common/bloc/locale_cubit.dart';
+import 'package:optex_app/common/helper/navigation/app_navigation.dart';
+import 'package:optex_app/common/helper/navigation/routes.dart';
 import 'package:optex_app/presentation/home/bloc/navigation_cubit.dart';
 
 import 'package:optex_app/l10n/app_localizations.dart';
 
 import 'package:optex_app/presentation/home/pages/home_screen.dart';
 import 'package:optex_app/presentation/profile/pages/plans_screen.dart';
-
-
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,18 +19,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // int _selectedIndex = 0;
-
   final List<Widget> _screens = [
     const HomeScreen(), // Home Screen
     const Scaffold(body: Center(child: Text('Chat – coming soon'))), // Chat placeholder
     const Scaffold(body: Center(child: Text('Add Advertisement – coming soon'))), // Placeholder for Screen 3
     const Scaffold(body: Center(child: Text('Advertisement – coming soon'))), // Placeholder for Screen 4
-     PlansScreen() 
-    // Placeholder for Screen 5
+    const Scaffold(body: Center(child: Text('My Account – coming soon'))), // Placeholder for Screen 5
   ];
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +35,11 @@ class _MainScreenState extends State<MainScreen> {
         builder: (context) {
           return Scaffold(
             body: _screens[context.watch<NavigationCubit>().state.selectedIndex],
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                final currentLocale = context.read<LocaleCubit>().state.locale;
-                if (currentLocale.languageCode == 'en') {
-                  context.read<LocaleCubit>().toArabic();
-                } else {
-                  context.read<LocaleCubit>().toEnglish();
-                }
-              },
-              child: Text(AppLocalizations.of(context)!.appTitle),
-            ),
             bottomNavigationBar: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
-                    theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 0 ? Colors.black : Colors.grey, ),
+                    theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 0 ? Colors.black : Colors.grey),
                     "lib/assets/icons/bungalow.svg",
                     color: context.watch<NavigationCubit>().state.selectedIndex == 0 ? Colors.black : Colors.grey,
                   ),
@@ -64,24 +48,23 @@ class _MainScreenState extends State<MainScreen> {
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     color: context.watch<NavigationCubit>().state.selectedIndex == 1 ? Colors.black : Colors.grey,
-                     theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 1 ? Colors.black : Colors.grey, ),
+                    theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 1 ? Colors.black : Colors.grey),
                     "lib/assets/icons/chat.svg",
-                    colorFilter: ColorFilter.mode(context.watch<NavigationCubit>().state.selectedIndex == 1 ? Colors.black : Colors.grey ,  BlendMode.srcIn,),
+                    colorFilter: ColorFilter.mode(context.watch<NavigationCubit>().state.selectedIndex == 1 ? Colors.black : Colors.grey, BlendMode.srcIn),
                   ),
                   label: AppLocalizations.of(context)!.chat,
                 ),
                 BottomNavigationBarItem(
-                  
                   icon: SvgPicture.asset(
-                     theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 2 ? Colors.blue : Colors.blue, ),
+                    theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 2 ? Colors.blue : Colors.blue),
                     "lib/assets/icons/add_box.svg",
-                    color: context.watch<NavigationCubit>().state.selectedIndex == 2 ?  Colors.blue : Colors.blue
+                    color: context.watch<NavigationCubit>().state.selectedIndex == 2 ? Colors.blue : Colors.blue,
                   ),
                   label: AppLocalizations.of(context)!.addProduct,
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
-                     theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 3 ? Colors.black : Colors.grey, ),
+                    theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 3 ? Colors.black : Colors.grey),
                     "lib/assets/icons/dataset.svg",
                     color: context.watch<NavigationCubit>().state.selectedIndex == 3 ? Colors.black : Colors.grey,
                   ),
@@ -89,7 +72,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
-                     theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 4 ? Colors.black : Colors.grey, ),
+                    theme: SvgTheme(currentColor: context.watch<NavigationCubit>().state.selectedIndex == 4 ? Colors.black : Colors.grey),
                     "lib/assets/icons/account_circle.svg",
                     color: context.watch<NavigationCubit>().state.selectedIndex == 4 ? Colors.black : Colors.grey,
                   ),
@@ -101,11 +84,17 @@ class _MainScreenState extends State<MainScreen> {
               unselectedItemColor: Colors.grey,
               selectedIconTheme: const IconThemeData(color: Colors.black),
               unselectedIconTheme: const IconThemeData(color: Colors.grey),
-              onTap: (index) => context.read<NavigationCubit>().updateIndex(index),
+              onTap: (index) {
+                if (index == 4) {
+                  AppNavigator.push(context, Routes.plan);
+                } else {
+                  context.read<NavigationCubit>().updateIndex(index);
+                }
+              },
               type: BottomNavigationBarType.fixed,
             ),
           );
-        }
+        },
       ),
     );
   }

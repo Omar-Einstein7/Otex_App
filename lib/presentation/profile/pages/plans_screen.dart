@@ -17,6 +17,7 @@ class PlansScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) => sl<PlanCubit>()..loadPlans(),
       child: Scaffold(
+        
         backgroundColor: Colors.white,
         body: BlocBuilder<PlanCubit, PlanState>(
           builder: (context, state) {
@@ -87,18 +88,51 @@ class PlansScreen extends StatelessWidget {
                   }),
 
                   const SizedBox(height: 24),
-                  Center(
+                  Card(
+                    elevation: 2,
+                    margin: EdgeInsets.all(12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 16),
-                      child: Text(
-                        'شاشة مخصصة لك سيتم عرض الباقات التي تناسبك',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                          fontFamily: GoogleFonts.cairo().fontFamily,
-                        ),
-                        textAlign: TextAlign.center,
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'باقات مخصصة لك',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: GoogleFonts.cairo().fontFamily,
+                            ),
+                            
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'تواصل معنا لأختيار الباقة المناسبة لك',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey[700],
+                              fontFamily: GoogleFonts.cairo().fontFamily,
+                            ),
+                   
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'فريق المبيعات',
+                            style: TextStyle(
+                              fontSize: 16,
+
+                              color: Colors.blue,
+                            
+                              fontWeight: FontWeight.bold,
+                              fontFamily: GoogleFonts.cairo().fontFamily,
+                            ),
+                       
+                          ),
+                        ],
                       ),
                     ),
                   ),

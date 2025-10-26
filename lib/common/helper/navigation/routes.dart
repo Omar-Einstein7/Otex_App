@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:optex_app/presentation/filter/pages/filter_screen.dart';
 import 'package:optex_app/presentation/home/pages/home_screen.dart';
 import 'package:optex_app/presentation/home/pages/main_screen.dart';
+import 'package:optex_app/presentation/profile/pages/plans_screen.dart';
 
 
 class Routes {
@@ -9,7 +10,7 @@ class Routes {
   static const main = '/main';
   static const home = '/home';
   static const filter = '/filter';
-  static const categories = '/categories';
+  static const plan = '/plan';
 }
 
 class AppRouter {
@@ -21,6 +22,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => FilterScreen());
       case Routes.main:
         return MaterialPageRoute(builder: (_) => const MainScreen());
+      case Routes.plan:
+        return MaterialPageRoute(builder: (_) => const PlansScreen());
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
     }
