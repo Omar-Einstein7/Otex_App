@@ -36,3 +36,18 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Packages Screen
 ![Packages Screen](screenshots/Screenshot_1761522864.png)
+
+## Dependencies
+
+### Core Dependencies
+- `flutter_bloc`: ^8.0.0
+- `dartz`: ^0.10.1
+- `get_it`: 8.0.3
+- `flutter_svg`: ^2.2.1
+- `flutter_localizations` (sdk)
+- `google_fonts`
+- `path`: ^1.8.0
+- `sqflite`: ^2.3.0
+- `device_preview`: ^1.3.1
+
+
